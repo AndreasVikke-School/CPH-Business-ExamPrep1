@@ -21,7 +21,7 @@ script:
   - npm install
   - npm install -g surge
   - npm run build
-  - surge --project ./build --domain cph-ca3-project.andreasvikke.dk
+  - surge --project ./build --domain examprep1.andreasvikke.dk
 
 services:
    - mysql
