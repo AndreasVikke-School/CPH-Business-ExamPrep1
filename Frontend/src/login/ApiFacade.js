@@ -1,4 +1,4 @@
-const URL = "http://localhost:8080/securitystarter";
+const URL = "https://andreasvikke.dk/ExamPreb1";
 
 function handleHttpErrors(res) {
     if (!res.ok) {

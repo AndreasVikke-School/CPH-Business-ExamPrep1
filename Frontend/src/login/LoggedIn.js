@@ -3,14 +3,13 @@ import Facade from './ApiFacade'
 
 export default function LoggedIn() {
   const [fetch, setFetch] = useState(false);
-  const [username, setUsername] = useState();
-  const [role, setRole] = useState();
+  const [user, setUser] = useState();
   const [hobbies, setHobbies] = useState([]);
 
   const [newHobby, setNewHobby] = useState({id: 0, name: "", description: ""});
 
   useEffect(() => {
-    Facade.fetchUser().then(res => {setUsername(res.userName); setRole(res.roleList)}).catch(e => console.log(e));
+    Facade.fetchUser().then(res => setUser(res)).catch(e => console.log(e));
   }, [])
 
   useEffect(() => {
@@ -33,7 +32,8 @@ export default function LoggedIn() {
     Facade.deleteHobby(id).then(res => setFetch(!fetch));
   }
 
-  if(role != "admin") {
+  // eslint-disable-next-line
+  if(user.roleList != "admin") {
     return (
       <div>
         <h2>Not logged in as admin</h2>
