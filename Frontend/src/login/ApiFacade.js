@@ -1,4 +1,4 @@
-const URL = "https://andreasvikke.dk/CA3";
+const URL = "http://localhost:8080/securitystarter";
 
 function handleHttpErrors(res) {
     if (!res.ok) {
@@ -52,15 +52,43 @@ function ApiFacade() {
         return fetch(URL + "/api/info/user", options).then(handleHttpErrors);
     }
 
-    const fetchData = () => {
-        return fetch(URL + "/api/swapi/demo", makeOptions("GET")).then(handleHttpErrors);
+    const fetchPersons = () => {
+        return fetch(URL + "/api/person/all", makeOptions("GET")).then(handleHttpErrors);
+    }
+
+    const fetchPersonBySearch = (term, search) => {
+        return fetch(URL + "/api/person/" + term + "/" + search, makeOptions("GET")).then(handleHttpErrors);
+    }
+
+    const fetchAllHobbies = () => {
+        return fetch(URL + "/api/hobby/all", makeOptions("GET")).then(handleHttpErrors);
+    }
+
+    const fetchHobby = (id) => {
+        return fetch(URL + "/api/hobby/" + id, makeOptions("GET")).then(handleHttpErrors);
+    }
+
+    const addEditHobby = (id, hobby) => {
+        if(id === 0)
+            return fetch(URL + "/api/hobby/add", makeOptions("POST", true, hobby)).then(handleHttpErrors);
+        else
+            return fetch(URL + "/api/hobby/edit/" + id, makeOptions("POST", true, hobby)).then(handleHttpErrors);
+    }
+
+    const deleteHobby = (id) => {
+            return fetch(URL + "/api/hobby/delete/" + id, makeOptions("DELETE", true)).then(handleHttpErrors);
     }
 
     return {
         login,
         logout,
         fetchUser,
-        fetchData
+        fetchPersons,
+        fetchPersonBySearch,
+        fetchHobby,
+        fetchAllHobbies,
+        addEditHobby,
+        deleteHobby
     }
 
 }

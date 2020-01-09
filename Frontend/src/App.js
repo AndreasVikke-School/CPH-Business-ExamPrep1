@@ -41,7 +41,7 @@ const Footer = () => {
   return (
     <footer>
       <div className="d-flex justify-content-center align-items-center">
-        <span> © Copyright 2019 - Martin Frederiksen, Andreas Vikke, Emil Svensmark, Asger Sørensen, & William Huusfeldt. </span>
+        <span> © Copyright 2020 - Andreas Vikke. </span>
       </div>
     </footer>
   )
